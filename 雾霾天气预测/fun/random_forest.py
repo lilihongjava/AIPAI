@@ -1,0 +1,17 @@
+from sklearn import tree
+from sklearn.model_selection import train_test_split
+from sklearn.externals import joblib
+import numpy as np
+import pandas as pd
+
+def random_forest(feature_column,label_column,input,output):
+    data = np.genfromtxt(input)
+    df = pd.DataFrame(data)
+    x_data = np.array(df.iloc[:, feature_column])
+    y_data = data[:, label_column]
+    #plt.scatter(x_data[:, 0], x_data[:, 1], c=y_data)
+    #plt.show()
+    x_train, x_test, y_train, y_test = train_test_split(x_data, y_data, test_size=0.5)
+    dtree = tree.DecisionTreeClassifier()
+    dtree.fit(x_train, y_train)
+    joblib.dump(dtree, output)
