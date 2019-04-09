@@ -5,9 +5,10 @@ import pandas as pd
 def split(split_ratio,input,output,output1,random_seed_num=None):
     data = np.genfromtxt(input)
     df = pd.DataFrame(data)
-    df1 = pd.DataFrame(data)
-    df = df.sample(frac=split_ratio, random_state=random_seed_num)
-
-    np.savetxt(output, df.values,fmt="%s")
-    df1 = df1.sample(frac=1-split_ratio, random_state=random_seed_num)
-    np.savetxt(output1, df1.values)
+    #print("data:" + data)
+    df1 = df.sample(frac=split_ratio, random_state=random_seed_num)
+    np.savetxt(output, df1.values,fmt="%s")
+    #print(df1.shape)
+    df = df.append(df1)
+    #求差集
+    np.savetxt(output1, df.drop_duplicates(keep=False),fmt="%s")

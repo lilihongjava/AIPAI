@@ -8,7 +8,7 @@ def normalized(field,input, output):
     # print(df)
     for i in field:
         data[:, i] = Normalization(data[:,i])
-    np.savetxt(output, data ,fmt="%s")
+    np.savetxt(output, data )
 
 def Normalization(x):
     return [(float(i)-np.min(x))/float(max(x)-min(x)) for i in x]
