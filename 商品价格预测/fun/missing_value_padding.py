@@ -1,33 +1,52 @@
-import numpy as np
+# encoding: utf-8
+"""
+@author: lee
+@desc:
+"""
 import math
+import numpy as np
 
-def missing_value_padding(input,filled_field,replace_with,output):
-    #data = np.genfromtxt("job.csv", delimiter=",")
+
+def missing_value_padding(input, filled_field, replace_with, output):
+    """
+    :param input:
+    :param filled_field:
+    :param replace_with:
+    :param output:
+    :return:
+    """
+    # data = np.genfromtxt("job.csv", delimiter=",")
     data = np.genfromtxt(input)
     filled_field_data = filled_field.split(",")
-    #print(data)
-    #print(len(data))#几行
-    #print(len(data[0]))#几列
-    #把原值替换数值max min mean
+    # print(data)
+    # print(len(data))#几行
+    # print(len(data[0]))#几列
+    # 把原值替换数值max min mean
     for i in range(len(filled_field_data)):
-        #i 从0开始
-        if(i+1>len(data[0])) :
+        # i 从0开始
+        if (i + 1 > len(data[0])):
             break
         temp = data[:, i]
         test = np.array([3, 5, 4, 7, np.nan])
-        #print(np.nanmax(test))
+        # print(np.nanmax(test))
         replace("2", test)
         for j in range(len(temp)):
-             if math.isnan(temp[j]) or temp[j] == '':
-                 #temp[j] = np.nanmax(temp)
-                 temp[j] = replace(replace_with, temp)
-                 #print(data)
+            if math.isnan(temp[j]) or temp[j] == '':
+                # temp[j] = np.nanmax(temp)
+                temp[j] = replace(replace_with, temp)
+                # print(data)
     np.savetxt(output, data)
-    return  data
+    return data
 
-def replace(var,temp):
+
+def replace(var, temp):
+    """
+    :param var:
+    :param temp:
+    :return:
+    """
     return {
-            '1': lambda temp: np.nanmin(temp),
-            '2': lambda temp: np.nanmax(temp),
-            '3': lambda temp: np.nanmean(temp),
+        '1': lambda temp: np.nanmin(temp),
+        '2': lambda temp: np.nanmax(temp),
+        '3': lambda temp: np.nanmean(temp),
     }[var](temp)

@@ -1,4 +1,8 @@
-# coding=utf-8
+# encoding: utf-8
+"""
+@author: lee
+@desc:
+"""
 from fun.read_data import *
 from fun.missing_value_padding import *
 from fun.linear_regression import *
