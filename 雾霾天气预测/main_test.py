@@ -30,16 +30,15 @@ def main_test():
     logistic_regression(train_feature_column=[3, 4, 5, 6], target_column=2,
                         input0="./data/split_out", output0="./data/lr_out")
     # 预测
-    prediction(input1="./data/lr_out", input="./data/split_out1", feature_column=[3, 4, 5, 6],
-               output="./data/prediction_out")
+    prediction(input1="./data/lr_out", input0="./data/split_out1", feature_column=[3, 4, 5, 6],
+               output0="./data/prediction_out")
     # 二分类评估
     two_category_assessment(original_label_column=2,
-                            input="./data/prediction_out", output="./data/tca_out",
-                            output1="./data/tca_out1", output2="./data/tca_out2")
+                            input0="./data/prediction_out", output0="./data/tca_out")
     # 随机森林
-    random_forest(input="./data/split_out", feature_column=[3, 4, 5, 6],
-                  label_column=2, output="./data/rf_out")
+    random_forest(input0="./data/split_out", feature_column=[3, 4, 5, 6],
+                  label_column=2, output0="./data/rf_out")
     # 预测
-    prediction(input1="./data/rf_out", input="./data/split_out1", feature_column=[3, 4, 5, 6],
-               output="./data/prediction_out1")
+    prediction(input1="./data/rf_out", input0="./data/split_out1", feature_column=[3, 4, 5, 6],
+               output0="./data/prediction_out1")
 main_test()

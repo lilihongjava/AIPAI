@@ -11,9 +11,9 @@ class Properties(object):
             dictName.setdefault(k, {})
             return self.__getDict(strName[len(k) + 1:], dictName[k], value)
         else:
-            #print(value)
+            # print(value)
             self.properties += strName + "=" +value +","
-            #dictName[strName] = value
+            # dictName[strName] = value
             return
 
     def getProperties(self):
